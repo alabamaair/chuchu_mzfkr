@@ -4,6 +4,25 @@
   <strong>Название:</strong>
   <%= @route.name %>
 </p>
+<p>
+  <% if @route.trains.present? %>
+      <% @route.trains.each do |train| %>
+          <%= render 'trains/train', train: train %>
+      <% end %>
+  <% else %>
+      Нет поездов на этом маршруте.
+  <% end %>
+</p>
+<p>
+  <% if @route.railway_stations.present? %>
+      <% @route.railway_stations.each do |rs| %>
+          <%= render 'railway_stations/railway_station', railway_station: rs %>
+      <% end %>
+  <% else %>
+      Нет станций на этом маршруте.
+  <% end %>
+</p>
+
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>
