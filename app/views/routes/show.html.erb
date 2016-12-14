@@ -4,20 +4,20 @@
   <strong>Название:</strong>
   <%= @route.name %>
 </p>
-<p>
+
+<h3>Поезда на маршруте:</h3>
+<table>
   <% if @route.trains.present? %>
-      <% @route.trains.each do |train| %>
-          <%= render 'trains/train', train: train %>
-      <% end %>
+      <%= render @route.trains %>
   <% else %>
       Нет поездов на этом маршруте.
   <% end %>
-</p>
+</table>
+
+<h3>Станции на маршруте:</h3>
 <p>
   <% if @route.railway_stations.present? %>
-      <% @route.railway_stations.each do |rs| %>
-          <%= render 'railway_stations/railway_station', railway_station: rs %>
-      <% end %>
+      <%= render @route.railway_stations %>
   <% else %>
       Нет станций на этом маршруте.
   <% end %>
