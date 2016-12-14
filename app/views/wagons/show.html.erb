@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Вагон</strong>
+  Тип: <%= @wagon.type_w %>,
+  Нижних мест: <%= @wagon.low_seats %>,
+  Верхних мест: <%= @wagon.top_seats %>
+  </p>
+<p>
+  <% if @wagon.train %>
+      Прицеплен к поезду <%= @wagon.train.number %>
+  <% else %>
+      Вагон не прицеплен.
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_wagon_path(@wagon) %> |
+<%= link_to 'Back', wagons_path %>
