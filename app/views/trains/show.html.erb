@@ -4,11 +4,20 @@
   <strong>Number:</strong>
   <%= @train.number %>
   <% if @train.route %>
-      <%= @train.route.name %>
+      Маршрут: <%= @train.route.name %>
   <% else %>
       Маршрут не назначен.
   <% end %>
 </p>
+
+<p>Количество купейных вагонов: <%= @train.wagons.kupe.count %></p>
+<p>Количество купейных верхних мест: <%= @train.wagons.kupe.sum(:top_seats) %></p>
+<p>Количество купейных нижних мест: <%= @train.wagons.kupe.sum(:low_seats) %></p>
+<p>Количество плацкартных вагонов: <%= @train.wagons.platscart.count %></p>
+<p>Количество плацкартных верхних мест: <%= @train.wagons.platscart.sum(:top_seats) %></p>
+<p>Количество плацкартных нижних мест: <%= @train.wagons.platscart.sum(:low_seats) %></p>
+
+
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>

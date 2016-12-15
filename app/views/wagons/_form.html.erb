@@ -1,0 +1,38 @@
+<%= form_for(wagon) do |f| %>
+  <% if wagon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wagon.errors.count, "error") %> prohibited this wagon from being saved:</h2>
+
+      <ul>
+      <% wagon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :type_w %>
+    <%= f.select :type_w, ['плацкарт', 'купе'] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :top_seats %>
+    <%= f.number_field :top_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :low_seats %>
+    <%= f.number_field :low_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :train %>
+    <%= f.collection_select :train_id, Train.all, :id, :number %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
