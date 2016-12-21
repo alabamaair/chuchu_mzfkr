@@ -4,5 +4,5 @@ class Wagon < ApplicationRecord
   scope :tail, -> { order('number DESC')}
   scope :head, -> { order('number ASC')}
 
-  validates :number, uniqueness: { scope: :train }
+  validates :number, uniqueness: { scope: :train_id }
 end

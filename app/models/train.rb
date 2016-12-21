@@ -5,7 +5,11 @@ class Train < ApplicationRecord
   has_many :wagons, before_add: :add_number
 
   def counting_seats(type_wagon, type_seat)
-    Wagon.where('type = ?', type_wagon).sum("#{type_seat}".to_sym)
+    wagons.where('type = ?', type_wagon).sum("#{type_seat}".to_sym)
+  end
+
+  def current_order_wagons
+    order_wagons ? wagons.head : wagons.tail
   end
 
   private
