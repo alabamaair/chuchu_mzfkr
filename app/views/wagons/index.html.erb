@@ -7,8 +7,11 @@
     <th>Тип</th>
     <th>Нижних мест</th>
     <th>Верхних мест</th>
+    <th>Нижних боковых мест</th>
+    <th>Верхних боковых мест</th>
+    <th>Сидячих мест</th>
   </tr>
-  <%= render @wagons %>
+  <%= render partial: "wagons/wagon", collection: @wagons %>
 </table>
 
 <br>

@@ -10,14 +10,16 @@
   <% end %>
 </p>
 
-<p>Количество купейных вагонов: <%= @train.wagons.kupe.count %></p>
-<p>Количество купейных верхних мест: <%= @train.wagons.kupe.sum(:top_seats) %></p>
-<p>Количество купейных нижних мест: <%= @train.wagons.kupe.sum(:low_seats) %></p>
-<p>Количество плацкартных вагонов: <%= @train.wagons.platscart.count %></p>
-<p>Количество плацкартных верхних мест: <%= @train.wagons.platscart.sum(:top_seats) %></p>
-<p>Количество плацкартных нижних мест: <%= @train.wagons.platscart.sum(:low_seats) %></p>
-
-
+<h3>Вагоны поезда:</h3>
+<p>
+  <% if @train.wagons.present? %>
+      <% @train.current_order_wagons.each do |wagon| %>
+          <%= link_to "Вагон #{wagon.number}", wagon_path(wagon) %><br>
+      <% end %>
+  <% else %>
+      Нет вагонов у этого поезда.
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
