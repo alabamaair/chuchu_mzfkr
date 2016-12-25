@@ -1,0 +1,9 @@
+<h1>Поиск билетов</h1>
+
+<%= form_tag(search_path, :method => "post", id: "search-form") do %>
+    <%= select :start_station, :railway_station_id, RailwayStation.all.collect { |rs| [rs.title, rs.id] }, {prompt: 'Выберите начальную станцию'} %>
+    <%= select :end_station, :railway_station_id, RailwayStation.all.collect { |rs| [rs.title, rs.id] }, {prompt: 'Выберите конечную станцию'} %>
+    <%= submit_tag "Искать" %>
+<% end %>
+
+<%= render 'searches/result' %>
