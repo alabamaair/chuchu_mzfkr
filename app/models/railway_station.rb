@@ -6,10 +6,14 @@ class RailwayStation < ApplicationRecord
   scope :ordered, -> { joins(:railway_stations_routes).order('railway_stations_routes.index_station ASC').uniq }
   #scope :ordered, -> { order('index_station ASC') }
 
-  def update_index_station(route, index_station, arrival, departure)
+  def update_index_station(route, index_station)
+    station_route = station_route(route)
+    @station_route.update_attribute(:index_station, index_station) if station_route
+  end
+
+  def update_time_station(route, arrival, departure)
     station_route = station_route(route)
     if station_route
-      @station_route.index_station = index_station
       @station_route.arrival = arrival
       @station_route.departure = departure
       @station_route.save
@@ -21,13 +25,13 @@ class RailwayStation < ApplicationRecord
   end
 
   def arrival_in(route)
-    t = station_route(route).try(:arrival)
-    t.to_s(:time) if t
+    time = station_route(route).try(:arrival)
+    time.to_s(:time) if time
   end
 
   def departure_in(route)
-    t = station_route(route).try(:departure)
-    t.to_s(:time) if t
+    time = station_route(route).try(:departure)
+    time.to_s(:time) if time
   end
 
   private

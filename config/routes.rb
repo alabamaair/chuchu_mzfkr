@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :railway_stations do
     patch :update_index_station, on: :member
+    patch :update_time_station, on: :member
   end
   resources :routes
   resources :tickets, only: [:new, :create, :show]
