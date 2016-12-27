@@ -14,11 +14,14 @@
 <p>
   <% if @train.wagons.present? %>
       <% @train.current_order_wagons.each do |wagon| %>
-          <%= link_to "Вагон #{wagon.number}", wagon_path(wagon) %><br>
+          <%= link_to "Вагон #{wagon.number}", wagon %><br>
       <% end %>
   <% else %>
       Нет вагонов у этого поезда.
   <% end %>
+</p>
+<p>
+  <%= link_to "Добавить вагон", new_train_wagon_path(@train) %>
 </p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |

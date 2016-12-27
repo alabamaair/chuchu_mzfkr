@@ -1,45 +1,40 @@
 class WagonsController < ApplicationController
+  before_action :set_train, only: [:new, :create]
   before_action :set_wagon, only: [:show, :edit, :update, :destroy]
 
-  # GET /wagons
   def index
-    @wagons = Wagon.all
+    @wagons = Wagon.where(type: params[:type])
   end
 
-  # GET /wagons/1
   def show
+    @wagon = Wagon.find(params[:id])
   end
 
-  # GET /wagons/new
   def new
     @wagon = Wagon.new
   end
 
-  # GET /wagons/1/edit
   def edit
   end
 
-  # POST /wagons
   def create
-    @wagon = Wagon.new(wagon_params)
+    @wagon = @train.wagons.new(wagon_params)
 
     if @wagon.save
-      redirect_to @wagon, notice: 'wagon was successfully created.'
+      redirect_to @train, notice: 'wagon was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /wagons/1
   def update
     if @wagon.update(wagon_params)
-      redirect_to @wagon, notice: 'wagon was successfully updated.'
+      redirect_to [@train, @wagon], notice: 'wagon was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /wagons/1
   def destroy
     @wagon.destroy
     redirect_to wagons_url, notice: 'wagon was successfully destroyed.'
@@ -47,11 +42,23 @@ class WagonsController < ApplicationController
 
   private
 
+  # def wagon_types
+  #   [CoupeWagon, EconomyWagon, LuxWagon, SittingWagon]
+  # end
+  #
+  # def wagon_type
+  #   params[:type].constantize if params[:type].in? wagon_types
+  # end
+
+  def set_train
+    @train = Train.find(params[:train_id])
+  end
+
   def set_wagon
     @wagon = Wagon.find(params[:id])
   end
 
   def wagon_params
-    params.require(:wagon).permit(:type_w, :low_seats, :top_seats, :train_id)
+    params.require(params[:type].try(:underscore) || :wagon).permit(:type, :number, :bottom_seats, :top_seats, :side_top_seats, :side_bottom_seats, :sitting_seats)
   end
 end

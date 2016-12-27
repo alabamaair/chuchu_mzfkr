@@ -17,7 +17,36 @@
 <h3>Станции на маршруте:</h3>
 <p>
   <% if @route.railway_stations.present? %>
-      <%= render @route.railway_stations %>
+      <table>
+        <thead>
+          <tr>
+            <td width="100px">Название</td>
+            <td>Позиция</td>
+            <td></td>
+            <td></td>
+            <td>Прибытие (xx:xx)</td>
+            <td>Отправление(yy:yy)</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @route.railway_stations.ordered.each do |station| %>
+            <tr>
+              <td><%= station.title %></td>
+              <%= form_tag update_index_station_railway_station_path(station), method: :patch do %>
+                <td><%= number_field_tag :index_station, station.index_station_in(@route) %></td>
+                <td><%= hidden_field_tag :route_id, @route.id %></td>
+                <td><%= submit_tag "Изменить индекс" %></td>
+              <% end %>
+              <%= form_tag update_time_station_railway_station_path(station), method: :patch do %>
+                <td><%= text_field_tag :arrival, station.arrival_in(@route) %></td>
+                <td><%= text_field_tag :departure, station.departure_in(@route) %></td>
+                <td><%= hidden_field_tag :route_id, @route.id %></td>
+                <td><%= submit_tag "Изменить время" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
   <% else %>
       Нет станций на этом маршруте.
   <% end %>

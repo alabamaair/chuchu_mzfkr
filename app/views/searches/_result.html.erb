@@ -1,0 +1,10 @@
+<% if @trains %>
+    <% @trains.each do |train| %>
+      <ul>
+        <li><h3>Поезд номер <%= train.number %></h3></li>
+        <li>Время отправления со станции <%= @start_station.title %>  <b><%= @start_station.departure_in(train.route) %></b></li>
+        <li>Время прибытия на станцию <%= @end_station.title %>  <b><%= @end_station.arrival_in(train.route) %></b></li>
+        <li><%= button_to 'Купить билет', new_ticket_path, method: :get, params: { train_id: train.id, start_station_id: @start_station.id, end_station_id: @end_station.id } %></li>
+      </ul>
+    <% end %>
+<% end %>
