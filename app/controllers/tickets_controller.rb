@@ -1,13 +1,21 @@
 class TicketsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+
+  def index
+    if current_user.admin?
+      @tickets = Ticket.all
+    else
+      @tickets = current_user.tickets
+    end
+  end
+
   def new
-    @user = User.new
     @ticket = Ticket.new
   end
 
   def create
-    @user = User.create(name: params[:user_name])
-    @ticket = @user.tickets.new(ticket_params)
-    @ticket.number = "TN#{Time.now.year}#{Time.now.month}#{Time.now.day}#{Array.new(4){rand(9)}.join}"
+    @ticket =  current_user.tickets.new(ticket_params)
 
     if @ticket.save
       redirect_to @ticket
@@ -17,12 +25,35 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find params[:id]
+  end
+
+  def edit
+  end
+
+  def update
+    if @ticket.update(ticket_params)
+      redirect_to @ticket, notice: 'Ticket was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @ticket.destroy
+    redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
   end
 
   private
 
+  def set_ticket
+    if current_user.admin?
+      @ticket = Ticket.find params[:id]
+    else
+      @ticket = current_user.tickets.find params[:id]
+    end
+  end
+
   def ticket_params
-    params.require(:ticket).permit(:user_name, :fio, :passport, :start_station_id, :end_station_id, :train_id)
+    params.require(:ticket).permit(:fio, :passport, :start_station_id, :end_station_id, :train_id)
   end
 end

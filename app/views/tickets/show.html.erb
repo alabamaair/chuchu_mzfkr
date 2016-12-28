@@ -4,3 +4,5 @@
 <p>Прибытие на станцию <%= @ticket.end_station.title %> в <%= @ticket.end_station.departure_in(@ticket.train.route) %> </p>
 <p>Пассажир: <%= @ticket.fio %></p>
 <p>Документы: <%=@ticket.passport %></p>
+
+<%= link_to 'Билеты', tickets_path %>
