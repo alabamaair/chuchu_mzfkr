@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :admin do
+    get '/dashboard', to: 'dashboard#dashboard', as: 'dashboard'
     resources :trains do
       resources :wagons, shallow: true
       resources :coupe_wagons, controller: 'wagons', type: 'CoupeWagon', shallow: true
