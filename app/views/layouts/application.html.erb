@@ -9,6 +9,13 @@
   </head>
 
   <body>
+  <% if user_signed_in? %>
+      Привет, <%= current_user.name %> <%= current_user.surname %> | <%= link_to "Выйти", destroy_user_session_path, method: :delete %>
+  <% else %>
+      <%= link_to "Войти", new_user_session_path  %>
+  <% end %>
+  <p id='notice' class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

@@ -1,31 +1,5 @@
 <h1>Введите данные для покупки билета:</h1>
 
-<%= form_for(@ticket) do |f| %>
-
-    <div class="field">
-      <%= f.label 'Имя пользователя на сайте' %>
-      <%= text_field_tag :user_name %>
-    </div>
-
-    <div class="field">
-      <%= f.label 'ФИО пассажира' %>
-      <%= f.text_field :fio %>
-    </div>
-
-    <div class="field">
-      <%= f.label 'Паспортные данные' %>
-      <%= f.text_field :passport %>
-    </div>
-
-    <div class="field">
-      <%= f.hidden_field :train_id, value: params[:train_id] %>
-      <%= f.hidden_field :start_station_id, value: params[:start_station_id] %>
-      <%= f.hidden_field :end_station_id, value: params[:end_station_id] %>
-    </div>
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-<% end %>
+<%= render 'form', ticket: @ticket %>
 
 <%= link_to 'Back', search_path %>
