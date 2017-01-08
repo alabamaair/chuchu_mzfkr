@@ -1,9 +1,12 @@
-<h1>Поиск билетов</h1>
+<h2>Поиск билетов</h2>
+<hr>
 
-<%= form_tag(search_path, :method => "post", id: "search-form") do %>
-    <%= select :start_station, :railway_station_id, RailwayStation.all.collect { |rs| [rs.title, rs.id] }, {prompt: 'Выберите начальную станцию'} %>
-    <%= select :end_station, :railway_station_id, RailwayStation.all.collect { |rs| [rs.title, rs.id] }, {prompt: 'Выберите конечную станцию'} %>
-    <%= submit_tag "Искать" %>
+<%= form_tag(search_path, :method => "post", id: "search-form", class: "form-inline") do %>
+    <%= select :start_station, :railway_station_id, RailwayStation.all.collect { |rs| [rs.title, rs.id] },
+               {prompt: 'Выберите начальную станцию'}, { :class => "form-control" } %>
+    <%= select :end_station, :railway_station_id, RailwayStation.all.collect { |rs| [rs.title, rs.id] },
+               {prompt: 'Выберите конечную станцию'}, { :class => "form-control" } %>
+    <%= submit_tag "Искать", { :class => "btn btn-primary" } %>
 <% end %>
 
 <%= render 'searches/result' %>

@@ -1,26 +1,30 @@
 <%= form_for(@ticket) do |f| %>
 
-    <div class="field">
-      <%= label_tag "Текущий пользователь: #{current_user.email}" %>
-    </div>
+    <div class="form-horizontal">
 
-    <div class="field">
-      <%= f.label 'ФИО пассажира' %>
-      <%= f.text_field :fio %>
-    </div>
+      <div class="form-group">
+        <p class="form-control-static"><%= "Текущий пользователь: #{current_user.email}" %></p>
+      </div>
 
-    <div class="field">
-      <%= f.label 'Паспортные данные' %>
-      <%= f.text_field :passport %>
-    </div>
+      <div class="form-group">
+        <%= f.label 'ФИО пассажира' %>
+        <%= f.text_field :fio, class: "form-control" %>
+      </div>
 
-    <div class="field">
-      <%= f.hidden_field :train_id, value: params[:train_id] if params[:train_id]%>
-      <%= f.hidden_field :start_station_id, value: params[:start_station_id] if params[:start_station_id]%>
-      <%= f.hidden_field :end_station_id, value: params[:end_station_id] if params[:end_station_id]%>
-    </div>
+      <div class="form-group">
+        <%= f.label 'Паспортные данные' %>
+        <%= f.text_field :passport, class: "form-control" %>
+      </div>
 
-    <div class="actions">
-      <%= f.submit %>
+      <div class="form-group">
+        <%= f.hidden_field :train_id, value: params[:train_id] if params[:train_id]%>
+        <%= f.hidden_field :start_station_id, value: params[:start_station_id] if params[:start_station_id]%>
+        <%= f.hidden_field :end_station_id, value: params[:end_station_id] if params[:end_station_id]%>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Купить', :class => "btn btn-primary" %>
+      </div>
+
     </div>
 <% end %>

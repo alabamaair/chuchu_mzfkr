@@ -1,0 +1,52 @@
+ru:
+  admin:
+    trains:
+      create:
+        success: Поезд создан
+      update:
+        success: Поезд обновлен
+      destroy:
+        success: Поезд успешно удален
+  activerecord:
+    models:
+      train:
+        one: Поезд
+        many: Поезда
+        few: Поездов
+        other: Поезда
+      route:
+        one: Маршрут
+        many: Маршруты
+        few: Маршрутов
+        other: Маршруты
+      wagon:
+        one: Вагон
+        many: Вагоны
+        few: Вагонов
+        other: Вагоны
+    attributes:
+      train:
+        number: Номер
+        route: Маршрут
+        order_wagons: Нумерация вагонов с головы состава
+    errors:
+      messages:
+        blank: не может быть пустым
+        taken: уже существует
+        record_invalid: имеет неверное значение
+  text:
+    empty_route: Маршрут не назначен
+    no_wagons: Нет вагонов у этого поезда
+    are_you_sure: Вы уверены?
+  actions:
+    edit: Изменить
+    destroy: Удалить
+    create: Создать
+    show: Показать
+    save: Сохранить
+    back: Назад
+    add_wagon: Добавить вагон
+  common:
+    errors: Ошибки
+  headers:
+    new_train: Новый поезд
