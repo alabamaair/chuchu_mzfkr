@@ -1,26 +1,26 @@
 <p>
-  <strong>Number:</strong>
+  <strong><%= t('activerecord.attributes.train.number') %></strong>
   <%= @train.number %>
   <% if @train.route %>
-      Маршрут: <%= @train.route.name %>
+      <%= t('activerecord.models.route.one') %>: <%= @train.route.name %>
   <% else %>
-      Маршрут не назначен.
+      <%= t('text.empty_route')%>.
   <% end %>
 </p>
 
-<h3>Вагоны поезда:</h3>
+<h3><%= t('activerecord.models.wagon.many') %>:</h3>
 <p>
   <% if @train.wagons.present? %>
       <% @train.current_order_wagons.each do |wagon| %>
-          <%= link_to "Вагон #{wagon.number}", [:admin, wagon] %><br>
+          <%= link_to "#{wagon.number}", [:admin, wagon] %><br>
       <% end %>
   <% else %>
-      Нет вагонов у этого поезда.
+      <%= t('text.no_wagons')%>.
   <% end %>
 </p>
 <p>
-  <%= link_to "Добавить вагон", new_admin_train_wagon_path(@train) %>
+  <%= link_to t('actions.add_wagon'), new_admin_train_wagon_path(@train) %>
 </p>
 
-<%= link_to 'Edit', edit_admin_train_path(@train) %> |
-<%= link_to 'Back', admin_trains_path %>
+<%= link_to t('actions.edit'), edit_admin_train_path(@train) %> |
+<%= link_to t('actions.back'), admin_trains_path %>
