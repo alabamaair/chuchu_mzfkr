@@ -6,7 +6,7 @@ Rails.application.initialize!
 
 ActionMailer::Base.smtp_settings = {
     address: 'alabamaair.tk',
-    port: 587,
+    port: 25,
     user_name: ENV["MAILER_EMAIL"],
     password: ENV["MAILER_PASSWORD"],
     authentication: :plain,
