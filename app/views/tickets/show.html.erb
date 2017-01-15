@@ -1,7 +1,7 @@
 <h1>Билет номер <%= @ticket.number %></h1>
 <p>Поезд номер <%= @ticket.train.number %></p>
 <p>Отправление от станции <%= @ticket.start_station.title %> в <%= @ticket.start_station.departure_in(@ticket.train.route) %></p>
-<p>Прибытие на станцию <%= @ticket.end_station.title %> в <%= @ticket.end_station.departure_in(@ticket.train.route) %> </p>
+<p>Прибытие на станцию <%= @ticket.end_station.title %> в <%= @ticket.end_station.arrival_in(@ticket.train.route) %> </p>
 <p>Пассажир: <%= @ticket.fio %></p>
 <p>Документы: <%=@ticket.passport %></p>
 
