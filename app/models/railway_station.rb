@@ -3,8 +3,7 @@ class RailwayStation < ApplicationRecord
   has_many :routes, through: :railway_stations_routes
   has_many :trains, foreign_key: :current_station_id
 
-  scope :ordered, -> { joins(:railway_stations_routes).order('railway_stations_routes.index_station ASC').uniq }
-  #scope :ordered, -> { order('index_station ASC') }
+  scope :ordered, -> { select('railway_stations.*, railway_stations_routes.index_station').joins(:railway_stations_routes).order("railway_stations_routes.index_station").uniq }
 
   def update_index_station(route, index_station)
     station_route = station_route(route)

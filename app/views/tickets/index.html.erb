@@ -18,7 +18,7 @@
         <td><%= ticket.end_station.title %></td>
         <td><%= link_to 'Показать', ticket %></td>
         <td><%= link_to 'Редактировать', edit_ticket_path(ticket) %></td>
-        <td><%= link_to 'Удалить', ticket, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+        <td><%= link_to 'Отменить', ticket, method: :delete, data: { confirm: 'Вы уверены что хотите отменить билет?' } %></td>
       </tr>
   <% end %>
   </tbody>

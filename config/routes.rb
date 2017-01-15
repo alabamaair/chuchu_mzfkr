@@ -14,7 +14,9 @@ Rails.application.routes.draw do
       patch :update_index_station, on: :member
       patch :update_time_station, on: :member
     end
-    resources :routes
+    resources :routes do
+      patch :add_railway_station, on: :member
+    end
   end
 
   resources :tickets
