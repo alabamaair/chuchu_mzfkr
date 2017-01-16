@@ -48,6 +48,10 @@
   <% else %>
       Нет станций на этом маршруте.
   <% end %>
+  <%= form_tag add_railway_station_admin_route_path, method: :patch do %>
+      <%= collection_select(:railway_station, :railway_station_id, RailwayStation.all, :id, :title, prompt: true) %>
+      <%= submit_tag "Добавить станцию" %>
+  <% end %>
 </p>
 
 
