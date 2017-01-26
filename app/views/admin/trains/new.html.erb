@@ -1,5 +1,5 @@
 <h1><%= t('headers.new_train')%></h1>
 
-<%= render 'form', train: [:admin, @train] %>
+<%= render 'form', train: @train %>
 
 <%= link_to t('actions.back'), admin_trains_path %>

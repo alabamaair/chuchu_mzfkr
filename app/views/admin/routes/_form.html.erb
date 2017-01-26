@@ -1,22 +1,14 @@
-<%= form_for([:admin, route]) do |f| %>
-  <% if route.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(route.errors.count, "error") %> не позволяют сохранить этот маршрут</h2>
+<%- hidden = false unless local_assigns[:hidden] %>
+<%= form_for [:admin, route], html: { style: "display: #{hidden ? 'none' : 'block'}", class: 'form-inline'} do |f| %>
 
-      <ul>
-      <% route.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'common/errors', resource: route %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit "#{ route.new_record? ? t('actions.create') : t('actions.edit') }" %>
   </div>
 <% end %>
